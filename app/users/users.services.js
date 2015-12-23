@@ -1,6 +1,6 @@
-angular.module('angularfireSlackApp')
+angular.module('RustApp')
   .factory('Users', function($firebaseArray, $firebaseObject, FirebaseUrl){
-    var = usersRef = new Firebase(FirebaseUrl+'users');
+    var usersRef = new Firebase(FirebaseUrl+'users');
     var users = $firebaseArray(usersRef);
 
     var Users = {
