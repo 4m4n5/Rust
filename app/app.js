@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name angularfireSlackApp
+ * @name RustApp
  * @description
- * # angularfireSlackApp
+ * # RustApp
  *
  * Main module of the application.
  */
 angular
-  .module('angularfireSlackApp', [
+  .module('RustApp', [
     'firebase',
     'angular-md5',
     'ui.router'
@@ -31,4 +31,4 @@ angular
 
     $urlRouterProvider.otherwise('/');
   })
-  .constant('FirebaseUrl', 'https://slack.firebaseio.com/');
+  .constant('FirebaseUrl', 'https://rustapp.firebaseio.com/');
