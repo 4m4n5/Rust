@@ -23,12 +23,33 @@ angular
       .state('login', {
         url: '/login',
         controller: 'AuthCtrl as authCtrl',
-        templateUrl: 'auth/login.html'
+        templateUrl: 'auth/login.html',
+        // The $firebaseAuth service provides us with a $requireAuth function
+        // which returns a promise. This promise will get resolved with an auth
+        // object if the user is logged in.
+        resolve: {
+          requireNoAuth: function($state, Auth){
+            return Auth.$requireAuth().then(function(auth){
+              $state.go('home');
+            }, function(error){
+              return;
+            });
+          }
+        }
       })
       .state('register', {
         url: '/register',
         controller: 'AuthCtrl as authCtrl',
-        templateUrl: 'auth/register.html'
+        templateUrl: 'auth/register.html',
+        resolve: {
+          requireNoAuth: function($state, Auth){
+            return Auth.$requireAuth().then(function(auth){
+              $state.go('home');
+            }, function(error){
+              return;
+            });
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
