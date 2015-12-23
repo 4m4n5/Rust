@@ -20,6 +20,7 @@ angular
         url: '/',
         templateUrl: 'home/home.html'
       })
+
       .state('login', {
         url: '/login',
         controller: 'AuthCtrl as authCtrl',
@@ -37,6 +38,7 @@ angular
           }
         }
       })
+
       .state('register', {
         url: '/register',
         controller: 'AuthCtrl as authCtrl',
@@ -51,6 +53,7 @@ angular
           }
         }
       })
+
       .state('profile', {
         url: '/profile',
         controller: 'ProfileCtrl as profileCtrl',
@@ -68,6 +71,28 @@ angular
           profile: function(Users, Auth){
             return Auth.$requireAuth().then(function(auth){
               return Users.getProfile(auth.uid).$loaded();
+            });
+          }
+        }
+      })
+
+      .state('channels', {
+        url: '/channels',
+        resolve: {
+          channels: function (Channels){
+            return Channels.$loaded();
+          },
+          profile: function ($state, Auth, Users){
+            return Auth.$requireAuth().then(function(auth){
+              return Users.getProfile(auth.uid).$loaded().then(function (profile){
+                if(profile.displayName){
+                  return profile;
+                } else {
+                  $state.go('profile');
+                }
+              });
+            }, function(error){
+              $state.go('home');
             });
           }
         }
