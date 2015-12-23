@@ -10,6 +10,7 @@ angular.module('angularfireSlackApp')
       getDisplayName: function(uid){
         return users.$getRecord(uid).displayName;
       },
+      // using gravatar to get profile photo attatched with a email id
       getGravatar: function(uid){
         return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
       },
