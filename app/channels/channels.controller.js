@@ -3,6 +3,7 @@ angular.module('RustApp')
     var channelsCtrl = this;
     channelsCtrl.profile = profile;
     channelsCtrl.channels = channels;
+    channelsCtrl.users = Users.all;
     channelsCtrl.getDisplayName = Users.getDisplayName;
     channelsCtrl.getGravatar = Users.getGravatar;
 
