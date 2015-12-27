@@ -22,6 +22,7 @@ angular.module('RustApp')
           name: '',
           safeword: ''
         };
+        $state.go('channels.messages', {channelId: ref.key()});
       });
     };
   });
