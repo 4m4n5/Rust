@@ -19,8 +19,8 @@ angular.module('RustApp')
     channelsCtrl.createChannel = function(){
       channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(){
         channelsCtrl.newChannel = {
-          name = '',
-          safeword = ''
+          name: '',
+          safeword: ''
         };
       });
     };
