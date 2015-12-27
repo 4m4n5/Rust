@@ -18,7 +18,16 @@ angular
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'home/home.html'
+        templateUrl: 'home/home.html',
+        resolve: {
+          requireNoAuth: function($state, Auth){
+            return Auth.$requireAuth().then(function(auth){
+              $state.go('channels');
+            }, function(error){
+              return;
+            });
+          }
+        }
       })
 
       .state('login', {
@@ -78,6 +87,8 @@ angular
 
       .state('channels', {
         url: '/channels',
+        controller: 'ChannelsCtrl as channelsCtrl',
+        templateUrl: 'channels/index.html',
         resolve: {
           channels: function (Channels){
             return Channels.$loaded();

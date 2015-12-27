@@ -9,6 +9,8 @@ angular.module('RustApp')
     profileCtrl.updateProfile = function(){
       // Doubtful about auth.password.email??
       profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
-      profileCtrl.profile.$save();
+      profileCtrl.profile.$save().then(function(){
+        $state.go('channels');
+      });
     };
   });
